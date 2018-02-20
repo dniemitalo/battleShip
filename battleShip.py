@@ -1,19 +1,32 @@
-myMatrix = [0, 1, 2, 3, 4,
-            5, 6, 7, 8, 9,
-            10, 11, 12, 13, 14,
-            15, 16, 17, 18, 19,
-            20, 21, 22, 23, 24]
+class Matrix():
+  grid =   ['0','0','0','0','0',
+            '0','0','0','0','0',
+            '0','0','0','0','0',
+            '0','0','0','0','0',
+            '0','0','0','0','0',
+            'N','N','N','N','N',
+            '0','0','0','0','0',
+            '0','0','0','0','0',
+            '0','0','0','0','0',
+            '0','0','0','0','0',
+            '0','0','0','0','0']
 
+playerOne = Matrix()
+playerTwo = Matrix()
 
-def lookUp(iVal, bVal):
-    if iVal == 0:
-        return 0
-    for iVal in bVal:
-        return iVal * bVal
+def lookUpTwo(iVal, bVal):
+  if iVal == 0 and bVal == 0:
+    return 0 
+  else:
+    return (iVal*5)  + bVal
 
+def printMatrix(player):
+  for i in range(11):
+    print [player.grid[lookUpTwo(i,b)] for b in range(5)]
 
-def printMatrix():
-    for i in range(5):
-        print ([myMatrix[lookUp(i, b)] for b in range(5)])
-
-printMatrix()
+def updateMatrix(player, xVal, yVal):
+  lookUpTwo  
+  
+    
+printMatrix(playerOne)
+printMatrix(playerTwo)
