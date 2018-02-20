@@ -1,15 +1,17 @@
 class Matrix():
-  grid =   ['0','0','0','0','0',
-            '0','0','0','0','0',
-            '0','0','0','0','0',
-            '0','0','0','0','0',
-            '0','0','0','0','0',
-            'N','N','N','N','N',
-            '0','0','0','0','0',
-            '0','0','0','0','0',
-            '0','0','0','0','0',
-            '0','0','0','0','0',
-            '0','0','0','0','0']
+  grid =   ['N','0','1','2','3','4',
+            '0','0','0','0','0','0',
+            '1','0','0','0','0','0',
+            '2','0','0','0','0','0',
+            '3','0','0','0','0','0',
+            '4','0','0','0','0','0',
+            '5','N','N','N','N','N',
+            '6','0','0','0','0','0',
+            '7','0','0','0','0','0',
+            '8','0','0','0','0','0',
+            '9','0','0','0','0','0',
+            '10','0','0','0','0','0']
+
   shipOne = []
   shipTwo = []
   shipThree = []
@@ -21,11 +23,11 @@ def lookUp(iVal, bVal):
   if iVal == 0 and bVal == 0:
     return 0 
   else:
-    return (iVal*5)  + bVal
+    return (iVal*6)  + bVal
 
 def printMatrix(player):
-  for i in range(11):
-    print [player.grid[lookUp(i,b)] for b in range(5)]
+  for i in range(12):
+    print [player.grid[lookUp(i,b)] for b in range(6)]
 
 def updateMatrix(value, xVal, yVal, player):
   place = lookUp(yVal,xVal)  
