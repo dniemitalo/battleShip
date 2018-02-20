@@ -12,10 +12,6 @@ class Matrix():
             '9','0','0','0','0','0',
             '10','0','0','0','0','0']
 
-  shipOne = []
-  shipTwo = []
-  shipThree = []
-
 playerOne = Matrix()
 playerTwo = Matrix()
 
@@ -55,11 +51,20 @@ def updateMatrix(value, xVal, yVal, player):
 #       updateMatrix('1',(x1+1),y1, player)
 #     elif isVertical:
 #       updateMatrix('1',x1,(y1+1), player)
-    
+
+def playerName(player):
+  if player == playerOne: 
+    x = 'player One'
+  elif player == playerTwo:
+    x = 'player Two'
+  player.name = raw_input('Who will be ' + x+'?')
+  return player.name
+
 def main():
   print 'Welcome to battleship'
   print 'The aim of the game is to sink your opponent\'s ships.'
   print 'Each player gets 3 ships: 2 ships that are 3 units long and 1 ship that is 2 units long'
+  playerName(playerOne)
+  playerName(playerTwo)
   
 main()
-
