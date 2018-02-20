@@ -1,5 +1,5 @@
-class Matrix():
-  grid =   ['N','0','1','2','3','4',
+=class Matrix():
+  grid =   [' ','0','1','2','3','4',
             '0','0','0','0','0','0',
             '1','0','0','0','0','0',
             '2','0','0','0','0','0',
@@ -56,7 +56,6 @@ def updateMatrix(value, xVal, yVal, player):
 #     elif isVertical:
 #       updateMatrix('1',x1,(y1+1), player)
     
-print 'playerOne'
-printMatrix(playerOne)
-print 'playerTwo'
-printMatrix(playerTwo)
+def main():
+  print 'Welcome to battleship'
+main()
