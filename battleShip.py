@@ -1,4 +1,4 @@
-=class Matrix():
+class Matrix():
   grid =   [' ','0','1','2','3','4',
             '0','0','0','0','0','0',
             '1','0','0','0','0','0',
@@ -58,4 +58,8 @@ def updateMatrix(value, xVal, yVal, player):
     
 def main():
   print 'Welcome to battleship'
+  print 'The aim of the game is to sink your opponent\'s ships.'
+  print 'Each player gets 3 ships: 2 ships that are 3 units long and 1 ship that is 2 units long'
+  
 main()
+
