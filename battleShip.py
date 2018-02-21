@@ -37,17 +37,15 @@ def placeShip(player, x1, y1, x2, y2):
   elif x1 == x2:
     isHorizontal = False
     isVertical = True
+    distance = abs(y2 - y1 +1)
   elif y1 == y2:
     isVertical = False
     isHorizontal = True
+    distance = abs(x2 - x1 + 1)
   else:
     print 'Ship cannot be placed diagonally'
-  if isHorizontal == True:
-    distance = x2 - x1
-  elif isVertical == True:
-    distance = y2 - y1 
   for i in range(distance):
-    if i == 1:
+    if i == 0:
       updateMatrix('1',x1,y1, player)
     elif isHorizontal:
       updateMatrix('1',(x1+1),y1, player)
