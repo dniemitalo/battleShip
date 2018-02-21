@@ -1,16 +1,16 @@
 class Matrix():
-  grid =   [' ','0','1','2','3','4',
-            '0','0','0','0','0','0',
-            '1','0','0','0','0','0',
-            '2','0','0','0','0','0',
-            '3','0','0','0','0','0',
-            '4','0','0','0','0','0',
-            '5','N','N','N','N','N',
-            '6','0','0','0','0','0',
-            '7','0','0','0','0','0',
-            '8','0','0','0','0','0',
-            '9','0','0','0','0','0',
-            '10','0','0','0','0','0']
+  grid =   ['00','1','2','3','4','5',
+            '01','0','0','0','0','0',
+            '02','0','0','0','0','0',
+            '03','0','0','0','0','0',
+            '04','0','0','0','0','0',
+            '05','0','0','0','0','0',
+            '06','N','N','N','N','N',
+            '07','0','0','0','0','0',
+            '08','0','0','0','0','0',
+            '09','0','0','0','0','0',
+            '10','0','0','0','0','0',
+            '11','0','0','0','0','0']
 
 playerOne = Matrix()
 playerTwo = Matrix()
@@ -32,27 +32,27 @@ def updateMatrix(value, xVal, yVal, player):
 def placeShip(player, x1, y1, x2, y2):
   isHorizontal = False
   isVertical = False
-  if x1 == x2:
-    isHorizontal = True
-    isVertical = False
-    return True
-  elif y1 == y2:
-    isVertical = True
+  if x1 == x2 and y1 == y2:
+    print 'Ship can not be placed on it self'
+  elif x1 == x2:
     isHorizontal = False
-    return False
+    isVertical = True
+  elif y1 == y2:
+    isVertical = False
+    isHorizontal = True
   else:
-#     print 'Ship cannot be placed diagonally'
-#   if isHorizontal == True:
-#     distance = x2 - x1
-#   elif isVertical == True:
-#     distance = y2 - y1 
-#   for i in range(distance):
-#     if i == 1:
-#       updateMatrix('1',x1,y1, player)
-#     elif isHorizontal:
-#       updateMatrix('1',(x1+1),y1, player)
-#     elif isVertical:
-#       updateMatrix('1',x1,(y1+1), player)
+    print 'Ship cannot be placed diagonally'
+  if isHorizontal == True:
+    distance = x2 - x1
+  elif isVertical == True:
+    distance = y2 - y1 
+  for i in range(distance):
+    if i == 1:
+      updateMatrix('1',x1,y1, player)
+    elif isHorizontal:
+      updateMatrix('1',(x1+1),y1, player)
+    elif isVertical:
+      updateMatrix('1',x1,(y1+1), player)
 
 def playerName(player):
   if player == playerOne: 
@@ -68,5 +68,8 @@ def main():
   print 'Each player gets 3 ships: 2 ships that are 3 units long and 1 ship that is 2 units long'
   playerName(playerOne)
   playerName(playerTwo)
+  print 'The players are', playerOne.name, 'and' ,playerTwo.name
+  print 'Player one is up. Please place your ships'
+  # placeShip(playerOne,,,,)
   
-main()
+# main()
