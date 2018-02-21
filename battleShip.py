@@ -29,16 +29,18 @@ def updateMatrix(value, xVal, yVal, player):
   place = lookUp(yVal,xVal)  
   player.grid[place] = value
 
-# def placeShip(player, x1,x2, y1, y2):
-#   isHorizontal = False
-#   isVertical = False
-#   if x1 == x2:
-#     isHorizontal = True
-#     isVertical = False
-#   elif y1 == y2:
-#     isVertical = True
-#     isHorizontal = False
-#   else:
+def placeShip(player, x1, y1, x2, y2):
+  isHorizontal = False
+  isVertical = False
+  if x1 == x2:
+    isHorizontal = True
+    isVertical = False
+    return True
+  elif y1 == y2:
+    isVertical = True
+    isHorizontal = False
+    return False
+  else:
 #     print 'Ship cannot be placed diagonally'
 #   if isHorizontal == True:
 #     distance = x2 - x1
