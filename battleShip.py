@@ -31,8 +31,8 @@ def updateMatrix(value, xVal, yVal, player):
   place = lookUp(yVal,xVal)  
   player.grid[place] = value
   
-def checkMarix(x, y, player):
-  if player.grid[lookUp(y, x)] == '1':
+def checkMarix(x, y, player, value):
+  if player.grid[lookUp(y, x)] == str(value):
     return True
   else:
     return False
@@ -136,9 +136,20 @@ def shoot(player):
   while int(y)>5 or int(y) < 1:
     print 'not valid spot'
     y = raw_input('Y ')
+  while x in player.grid[lookUp(y,x)] != 0:
+    print 'you have already shot there' 
+    x = int(raw_input('X '))
+    while int(x)>5 or int(x)<1:
+      print 'not valid spot'
+      x = raw_input('X ')
+    y = raw_input('Y ')
+    while int(y)>5 or int(y) < 1:
+      print 'not valid spot'
+      y = raw_input('Y ')
+    
   y = int(y)+6
   if player == playerOne:
-    if checkMarix(x,y,playerTwo):
+    if checkMarix(x,y,playerTwo, '1'):
       print 'Hit'
       updateMatrix('H',x,(y - 6),playerOne)
       printMatrix(player)
@@ -153,7 +164,7 @@ def shoot(player):
       printMatrix(player)
       
   elif player == playerTwo:
-    if checkMarix(x,y,playerOne):
+    if checkMarix(x,y,playerOne, '1'):
       print 'Hit'
       updateMatrix('H',x, (y - 6),playerTwo)
       printMatrix(player)
