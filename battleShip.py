@@ -69,7 +69,7 @@ def playerName(player):
 def playerShip(player):
   print player.name + ' you are up'
   print 'place your ship by providing coordinates'
-  for i  in range(1):
+  for i  in range(3):
     if player == playerOne:
       printMatrix(playerOne)
     elif player == playerTwo:
@@ -132,40 +132,46 @@ def shoot(player):
   while type(x) == str:
     try:
       x = int(x)
-    except ValueError:
-      print 'not valid spot'
-      x = int(raw_input('X '))
       while int(x)>5 or int(x)<1:
         print 'not valid spot'
         x = raw_input('X ')
-  while int(x)>5 or int(x)<1:
-    print 'not valid spot'
-    x = raw_input('X ')
+    except ValueError:
+      print 'not valid spot'
+      x = raw_input('X ')
       
   y = raw_input('Y ')
   while type(y) == str:
     try:
       y = int(y)
-    except ValueError:
-      print 'not valid spot'
-      y = int(raw_input('Y '))
       while int(y)>5 or int(y)<1:
         print 'not valid spot'
         y = raw_input('Y ')
-  while int(y)>5 or int(y)<1:
-    print 'not valid spot'
-    y = raw_input('y ')     
+    except ValueError:
+      print 'not valid spot'
+      y = raw_input('Y ')   
     
-  while x in player.grid[lookUp(y,x)] != 0:
+  while player.grid[lookUp(y,x)] != '0':
     print 'you have already shot there' 
-    x = int(raw_input('X '))
-    while int(x)>5 or int(x)<1:
-      print 'not valid spot'
-      x = raw_input('X ')
+    x = raw_input('X ')
+    while type(x) == str:
+      try:
+        x = int(x)
+        while int(x)>5 or int(x)<1:
+          print 'not valid spot'
+          x = raw_input('X ')
+      except ValueError:
+        print 'not valid spot'
+        x = raw_input('X ')
     y = raw_input('Y ')
-    while int(y)>5 or int(y) < 1:
-      print 'not valid spot'
-      y = raw_input('Y ')
+    while type(y) == str:
+      try:
+        y = int(y)
+        while int(y)>5 or int(y)<1:
+          print 'not valid spot'
+          y = raw_input('Y ')
+      except ValueError:
+        print 'not valid spot'
+        y = raw_input('Y ') 
     
   y = int(y)+6
   if player == playerOne:
