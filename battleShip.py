@@ -1,3 +1,4 @@
+import replit
 class Matrix():
   def __init__(self):  #init for Matrix class 
     self.grid =['00','1','2','3','4','5',
@@ -257,12 +258,18 @@ def main():
   print 'The aim of the game is to sink your opponent\'s ships.'
   print 'Each player gets 3 ships: 2 ships that are 3 units long and 1 ship that is 2 units long'
   playerName(playerOne)
+  replit.clear()
   playerName(playerTwo)
+  replit.clear()
   print 'The players are', playerOne.name, 'and' ,playerTwo.name
   playerShip(playerOne)
+  replit.clear()
   playerShip(playerTwo)
+  replit.clear()
   while True:
     shoot(playerOne)
+    replit.clear()
     shoot(playerTwo)
+    replit.clear()
     
 main()
