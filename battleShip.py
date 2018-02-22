@@ -1,5 +1,5 @@
 class Matrix():
-  def __init__(self):
+  def __init__(self):  #init for Matrix class 
     self.grid =['00','1','2','3','4','5',
                 '01','0','0','0','0','0',
                 '02','0','0','0','0','0',
@@ -13,6 +13,7 @@ class Matrix():
                 '10','0','0','0','0','0',
                 '11','0','0','0','0','0']
     self.score = 0
+    self.distance = 0
 
 playerOne = Matrix()
 playerTwo = Matrix()
@@ -62,6 +63,7 @@ def placeShip(player, x1, y1, x2, y2):
       distance = x1 - x2 + 1
   else:
     print 'Ship cannot be placed diagonally'
+  player.distance = distance
   for i in range(abs(distance)):
     if isBackwards:
       i = -i
@@ -88,51 +90,62 @@ def playerShip(player):
       printMatrix(playerTwo)
     if i == 0:
       print 'Place ship #1 (length of 3)'
+      while player.distance != 3:
+        validate(player, 3)
     elif i == 1:
       print 'Place ship #2 (length of 2)'
+      while player.distance != 2:
+        validate(player, 2)
     elif i == 2:
       print 'Place ship #3 (length of 2)'
-    x1 = raw_input('x1 ')
-    while type(x1) == str:
-      try:
-        x1 = int(x1)
-      except ValueError:
-        print 'Use a valid coordinate'
-        x1 = raw_input('x1 ')
-    while int(x1)>5 or int(x1)<1:
-      print 'not a valid spot'
-      x1 = int(raw_input('x1 '))
-    y1 = raw_input('y1 ')
-    while type(y1) == str:
-      try:
-        y1 = int(y1)
-      except ValueError:
-        print 'Use a valid coordinate'
-        y1 = raw_input('y1 ')
-    while int(y1)> 11 or int(y1)<7:
-      print 'not a valid spot'
-      y1 = int(raw_input('y1 '))
-    x2 = raw_input('x2 ')
-    while type(x2) == str:
-      try:
-        x2 = int(x2)
-      except ValueError:
-        print 'Use a valid coordinate'
-        x2 = raw_input('x2 ')
-    while int(x2)> 5 or int(x2)<1:
-      print 'not a valid spot'
-      x2 = int(raw_input('x2 '))
-    y2 = raw_input('y2 ')
-    while type(y2) == str:
-      try:
-        y2 = int(y2)
-      except ValueError:
-        print 'Use a valid coordinate'
-        y2 = raw_input('y2 ')
-    while int(y2)> 11 or int(y2)<7:
-      print 'not a valid spot'
-      y2 = int(raw_input('y2 '))
-    placeShip(player, abs(x1), abs(y1), abs(x2), abs(y2)) 
+      while player.distance != 2:
+        validate(player, 2)
+    
+def validate(player, value):
+  x1 = raw_input('x1 ')
+  while type(x1) == str:
+    try:
+      x1 = int(x1)
+    except ValueError:
+      print 'Use a valid coordinate'
+      x1 = raw_input('x1 ')
+  while int(x1)>5 or int(x1)<1:
+    print 'not a valid spot'
+    x1 = int(raw_input('x1 '))
+  y1 = raw_input('y1 ')
+  while type(y1) == str:
+    try:
+      y1 = int(y1)
+    except ValueError:
+      print 'Use a valid coordinate'
+      y1 = raw_input('y1 ')
+  while int(y1)> 11 or int(y1)<7:
+    print 'not a valid spot'
+    y1 = int(raw_input('y1 '))
+  x2 = raw_input('x2 ')
+  while type(x2) == str:
+    try:
+      x2 = int(x2)
+    except ValueError:
+      print 'Use a valid coordinate'
+      x2 = raw_input('x2 ')
+  while int(x2)> 5 or int(x2)<1:
+    print 'not a valid spot'
+    x2 = int(raw_input('x2 '))
+  y2 = raw_input('y2 ')
+  while type(y2) == str:
+    try:
+      y2 = int(y2)
+    except ValueError:
+      print 'Use a valid coordinate'
+      y2 = raw_input('y2 ')
+  while int(y2)> 11 or int(y2)<7:
+    print 'not a valid spot'
+    y2 = int(raw_input('y2 '))
+  if player.distance == value:
+    placeShip(player, abs(x1), abs(y1), abs(x2), abs(y2))
+  else:
+    print 'Put in a distance of ', player.distance
 
 def won(player):
   print player.name, 'has won'
