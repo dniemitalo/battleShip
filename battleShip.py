@@ -12,6 +12,7 @@ class Matrix():
               '09','0','0','0','0','0',
               '10','0','0','0','0','0',
               '11','0','0','0','0','0']
+    self.score = 0
 
 playerOne = Matrix()
 playerTwo = Matrix()
@@ -29,6 +30,12 @@ def printMatrix(player):
 def updateMatrix(value, xVal, yVal, player):
   place = lookUp(yVal,xVal)  
   player.grid[place] = value
+  
+def checkMarix(x, y, player):
+  if player.grid[lookUp(y, x)] == '1':
+    return True
+  else:
+    return False
 
 def placeShip(player, x1, y1, x2, y2):
   isHorizontal = False
@@ -63,6 +70,10 @@ def playerShip(player):
   print player.name + ' you are up'
   print 'place your ship by providing coordinates'
   for i  in range(3):
+    if player == playerOne:
+      printMatrix(playerOne)
+    elif player == playerTwo:
+      printMatrix(playerTwo)
     if i == 0:
       print 'Place ship #1 (length of 3)'
     elif i == 1:
@@ -70,14 +81,67 @@ def playerShip(player):
     elif i == 2:
       print 'Place ship #3 (length of 2)'
     x1 = int(raw_input('x1 '))
+    while int(x1)>5 or int(x1)<1:
+      print 'not a valid spoot'
+      x1 = int(raw_input('x1 '))
     y1 = int(raw_input('y1 '))
+    while int(y1)> 11 or int(y1)<7:
+      print 'not a valid spoot'
+      y1 = int(raw_input('y1 '))
     x2 = int(raw_input('x2 '))
+    while int(x2)> 5 or int(x2)<1:
+      print 'not a valid spoot'
+      x2 = int(raw_input('x2 '))
     y2 = int(raw_input('y2 '))
+    while int(y2)> 11 or int(y2)<7:
+      print 'not a valid spoot'
+      y2 = int(raw_input('y2 '))
     placeShip(player, abs(x1), abs(y1), abs(x2), abs(y2)) 
-    if player == playerOne:
-      printMatrix(playerOne)
-    elif player == playerTwo:
-      printMatrix(playerTwo)
+
+def won(player):
+  print player.name, 'has won'
+  main()
+
+def shoot(player):
+  print 'Where would', player.name  ,'like to shoot'
+  x = int(raw_input('X '))
+  while int(x)>5 or int(x)<1:
+    print 'not valid spot'
+    x = raw_input('X ')
+  y = raw_input('Y ')
+  while int(y)>5 or int(y) < 1:
+    print 'not valid spot'
+    y = raw_input('Y ')
+  y = int(y)+6
+  if player == playerOne:
+    if checkMarix(x,y,playerTwo):
+      print 'Hit'
+      updateMatrix('H',x,(y - 6),playerOne)
+      printMatrix(player)
+      playerOne.score = playerOne.score + 1
+      if playerOne.score < 7:
+        shoot(playerOne)
+      else:
+        won(playerOne)
+    else:
+      print 'Miss'
+      updateMatrix('X',x,(y - 6),playerOne)
+      printMatrix(player)
+      
+  elif player == playerTwo:
+    if checkMarix(x,y,playerOne):
+      print 'Hit'
+      updateMatrix('H',x, (y - 6),playerTwo)
+      printMatrix(player)
+      playerTwo.score = playerTwo.score + 1
+      if playerTwo.score < 7:
+        shoot(playerTwo)
+      else:
+        won(playerTwo)
+    else:
+      print 'Miss'
+      updateMatrix('X',x,(y - 6),playerTwo)
+      printMatrix(player)
 
 def main():
   print 'Welcome to battleship'
@@ -88,5 +152,8 @@ def main():
   print 'The players are', playerOne.name, 'and' ,playerTwo.name
   playerShip(playerOne)
   playerShip(playerTwo)
-  
+  while True:
+    shoot(playerOne)
+    shoot(playerTwo)
+    
 main()
