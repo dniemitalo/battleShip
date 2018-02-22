@@ -69,7 +69,7 @@ def playerName(player):
 def playerShip(player):
   print player.name + ' you are up'
   print 'place your ship by providing coordinates'
-  for i  in range(3):
+  for i  in range(1):
     if player == playerOne:
       printMatrix(playerOne)
     elif player == playerTwo:
@@ -128,14 +128,34 @@ def won(player):
 
 def shoot(player):
   print 'Where would', player.name  ,'like to shoot'
-  x = int(raw_input('X '))
+  x = raw_input('X ')
+  while type(x) == str:
+    try:
+      x = int(x)
+    except ValueError:
+      print 'not valid spot'
+      x = int(raw_input('X '))
+      while int(x)>5 or int(x)<1:
+        print 'not valid spot'
+        x = raw_input('X ')
   while int(x)>5 or int(x)<1:
     print 'not valid spot'
     x = raw_input('X ')
+      
   y = raw_input('Y ')
-  while int(y)>5 or int(y) < 1:
+  while type(y) == str:
+    try:
+      y = int(y)
+    except ValueError:
+      print 'not valid spot'
+      y = int(raw_input('Y '))
+      while int(y)>5 or int(y)<1:
+        print 'not valid spot'
+        y = raw_input('Y ')
+  while int(y)>5 or int(y)<1:
     print 'not valid spot'
-    y = raw_input('Y ')
+    y = raw_input('y ')     
+    
   while x in player.grid[lookUp(y,x)] != 0:
     print 'you have already shot there' 
     x = int(raw_input('X '))
