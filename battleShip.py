@@ -38,6 +38,29 @@ def checkMarix(x, y, player, value):
   else:
     return False
 
+def distance(player, x1,y1,x2,y2):
+  isHorizontal = False
+  isVertical = False
+  if x1 == x2:
+    isHorizontal = False
+    isVertical = True
+    if y2 > y1:
+      isBackwards = False
+      distance = y2 - y1 + 1
+    else:
+      isBackwards = True
+      distance = y1 - y2 + 1
+  elif y1 == y2:
+    isVertical = False
+    isHorizontal = True
+    if x2 > x1:
+      isBackwards = False
+      distance = x2 - x1 + 1
+    else:
+      isBackwards = True
+      distance = x1 - x2 + 1
+  player.distance = distance
+
 def placeShip(player, x1, y1, x2, y2):
   isHorizontal = False
   isVertical = False
@@ -63,7 +86,6 @@ def placeShip(player, x1, y1, x2, y2):
       distance = x1 - x2 + 1
   else:
     print 'Ship cannot be placed diagonally'
-  player.distance = distance
   for i in range(abs(distance)):
     if isBackwards:
       i = -i
@@ -89,13 +111,13 @@ def playerShip(player):
     elif player == playerTwo:
       printMatrix(playerTwo)
     if i == 0:
-      print 'Place ship #1 (length of 3)'
-      while player.distance != 3:
-        validate(player, 3)
-    elif i == 1:
-      print 'Place ship #2 (length of 2)'
+      print 'Place ship #1 (length of 2)'
       while player.distance != 2:
         validate(player, 2)
+    elif i == 1:
+      print 'Place ship #2 (length of 3)'
+      while player.distance != 3:
+        validate(player, 3)
     elif i == 2:
       print 'Place ship #3 (length of 2)'
       while player.distance != 2:
@@ -142,10 +164,11 @@ def validate(player, value):
   while int(y2)> 11 or int(y2)<7:
     print 'not a valid spot'
     y2 = int(raw_input('y2 '))
+  distance(player,x1,y1,x2,y2)
   if player.distance == value:
     placeShip(player, abs(x1), abs(y1), abs(x2), abs(y2))
   else:
-    print 'Put in a distance of ', player.distance
+    print 'Put in a distance of ', value
 
 def won(player):
   print player.name, 'has won'
