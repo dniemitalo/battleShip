@@ -177,7 +177,9 @@ def validate(player, value):
     print 'Put in a distance of ', value
 
 def won(player):
-  print player.name, 'has won'
+  print '~~~~~~~~~~~~~~~~~~~~~~'
+  print player.name, 'Has Won'
+  print '~~~~~~~~~~~~~~~~~~~~~~'
   main()
 
 def shoot(player):
@@ -263,7 +265,7 @@ def main():
   playerTwo.distance = 0
   print 'Welcome to battleship'
   print 'The aim of the game is to sink your opponent\'s ships.'
-  print 'Each player gets 3 ships: 2 ships that are 3 units long and 1 ship that is 2 units long'
+  print 'Each player gets 3 ships: 2 ships that are 2 units long and 1 ship that is 3 units long'
   playerName(playerOne)
   replit.clear()
   playerName(playerTwo)
@@ -274,8 +276,10 @@ def main():
   playerShip(playerTwo)
   replit.clear()
   while True:
+    printMatrix(playerTwo)
     shoot(playerOne)
     replit.clear()
+    printMatrix(playerTwo)
     shoot(playerTwo)
     replit.clear()
     
