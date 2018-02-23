@@ -280,10 +280,10 @@ def main():      # Defines the starting sequence
   playerShip(playerTwo)   # calls place ship function for player two
   replit.clear()
   while True:
-    printMatrix(playerTwo)  # prints player two's grid
+    printMatrix(playerOne)  # prints player one's grid
     shoot(playerOne)        # calls player one's turn to shoot
     replit.clear()
-    printMatrix(playerTwo)  # prints player one's grid
+    printMatrix(playerTwo)  # prints player two's grid
     shoot(playerTwo)        # calls player two's turn to shoot
     replit.clear()
     
