@@ -40,6 +40,7 @@ def checkMarix(x, y, player, value):
     return False
 
 def distance(player, x1,y1,x2,y2):
+  player.distance = 0
   isHorizontal = False
   isVertical = False
   if x1 == x2:
@@ -60,7 +61,11 @@ def distance(player, x1,y1,x2,y2):
     else:
       isBackwards = True
       distance = x1 - x2 + 1
-  player.distance = distance
+  if x1 != x2 and y1 != y2:
+    print 'provid valid coordinate points'
+  else:
+    player.distance = distance
+  
 
 def placeShip(player, x1, y1, x2, y2):
   isHorizontal = False
@@ -254,6 +259,8 @@ def shoot(player):
       printMatrix(player)
 
 def main():
+  playerOne.distance = 0
+  playerTwo.distance = 0
   print 'Welcome to battleship'
   print 'The aim of the game is to sink your opponent\'s ships.'
   print 'Each player gets 3 ships: 2 ships that are 3 units long and 1 ship that is 2 units long'
