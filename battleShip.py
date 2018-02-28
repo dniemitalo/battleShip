@@ -1,5 +1,6 @@
 # Battleship: The Terminal
 # Jack Tupper and Matt Behnke
+# Dan Niemitalo Was Here
 
 import replit # Importing replit to clear the screen
 class Matrix(): # defining class matrix to set up players one and two
